@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmwqh6i3gley2"]
 
-[ext_resource type="Texture2D" uid="uid://dskw140xv1sii" path="res://graphics/tardigrade.png" id="1_jbtjs"]
 [ext_resource type="Script" path="res://scenes/monster.gd" id="1_wfsig"]
-[ext_resource type="AudioStream" uid="uid://bobhrpqvghfi7" path="res://audio/hitHurt.wav" id="3_24bd7"]
+[ext_resource type="Texture2D" uid="uid://dskw140xv1sii" path="res://graphics/monsters/tardigrade.png" id="2_l74qm"]
+[ext_resource type="AudioStream" uid="uid://bobhrpqvghfi7" path="res://audio/effects/hitHurt.wav" id="3_apwvi"]
 
 [node name="Monster" type="Control"]
 layout_mode = 3
@@ -30,8 +30,9 @@ show_percentage = false
 
 [node name="Tardigrade" type="Sprite2D" parent="VBoxContainer"]
 position = Vector2(-6, 38)
-texture = ExtResource("1_jbtjs")
+texture = ExtResource("2_l74qm")
 centered = false
 
 [node name="HitHurt" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_24bd7")
+stream = ExtResource("3_apwvi")
+volume_db = -20.0

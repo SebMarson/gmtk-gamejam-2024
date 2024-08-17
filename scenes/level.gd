@@ -46,10 +46,14 @@ func _process(delta: float) -> void:
 	pass
 
 func loadShaders() -> void:
-	var strong_shader_code: Shader = load("res://shaders/strong.gdshader")
-	var strong_shader = ShaderMaterial.new()
-	strong_shader.shader = strong_shader_code
-	shaders["STRONG"] = strong_shader
+	loadShader("STRONG", "res://shaders/strong.gdshader")
+	loadShader("DARKNESS", "res://shaders/darkness.gdshader")
+	
+func loadShader(name, path) -> void:
+	var shader_code: Shader = load(path)
+	var shader = ShaderMaterial.new()
+	shader.shader = shader_code
+	shaders[name] = shader
 
 func spawnMonster() -> void:
 	currentMonster = monsterScene.instantiate()

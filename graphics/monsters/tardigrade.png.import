@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bafq5phsgf2q6"
-path="res://.godot/imported/start_button.png-258e5652aab9d0ffdcfdd5442900e163.ctex"
+uid="uid://dskw140xv1sii"
+path="res://.godot/imported/tardigrade.png-e18501fcca8744b55f9f0ad4c748e935.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/start_button.png"
-dest_files=["res://.godot/imported/start_button.png-258e5652aab9d0ffdcfdd5442900e163.ctex"]
+source_file="res://graphics/monsters/tardigrade.png"
+dest_files=["res://.godot/imported/tardigrade.png-e18501fcca8744b55f9f0ad4c748e935.ctex"]
 
 [params]
 

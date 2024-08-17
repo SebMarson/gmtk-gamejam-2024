@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://muiphjp2gdq4"]
 
-[ext_resource type="Texture2D" uid="uid://bafq5phsgf2q6" path="res://graphics/start_button.png" id="1_mqfwb"]
 [ext_resource type="Script" path="res://scenes/start_screen.gd" id="1_tqxqu"]
-[ext_resource type="Texture2D" uid="uid://dw1vjuak0lg7p" path="res://graphics/start_button_hover.png" id="2_dplng"]
+[ext_resource type="Texture2D" uid="uid://bafq5phsgf2q6" path="res://graphics/buttons/start_button.png" id="2_4i75w"]
+[ext_resource type="Texture2D" uid="uid://dw1vjuak0lg7p" path="res://graphics/buttons/start_button_hover.png" id="3_lhroi"]
 [ext_resource type="Script" path="res://scenes/start_button.gd" id="4_5w0x3"]
 
 [node name="StartScreen" type="Node2D"]
@@ -32,8 +32,8 @@ layout_mode = 2
 [node name="StartButton" type="TextureButton" parent="ButtonMarginContainer/ButtonVBoxContainer"]
 z_index = 1
 layout_mode = 2
-texture_normal = ExtResource("1_mqfwb")
-texture_hover = ExtResource("2_dplng")
+texture_normal = ExtResource("2_4i75w")
+texture_hover = ExtResource("3_lhroi")
 stretch_mode = 0
 script = ExtResource("4_5w0x3")
 
