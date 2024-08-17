@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdd1sqm8xlsc5"]
+
+[ext_resource type="Script" path="res://scenes/deck.gd" id="1_1vua8"]
+[ext_resource type="Texture2D" uid="uid://dxvik3syi6gqj" path="res://graphics/deck.png" id="1_pqxpf"]
+
+[node name="Deck" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1vua8")
+
+[node name="Label" type="Label" parent="."]
+z_index = 2
+layout_mode = 0
+offset_left = 79.0
+offset_top = 75.0
+offset_right = 142.0
+offset_bottom = 117.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Text"
+
+[node name="DeckSprite" type="Sprite2D" parent="."]
+z_index = 1
+z_as_relative = false
+position = Vector2(2, -1)
+texture = ExtResource("1_pqxpf")
+centered = false

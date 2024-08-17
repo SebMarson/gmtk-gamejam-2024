@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://e4g2u45tuy5b"]
+
+[ext_resource type="Script" path="res://scenes/level.gd" id="1_oatnq"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_oatnq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_as_relative = false
+offset_right = 1278.0
+offset_bottom = 731.0
+color = Color(0.383851, 0.174767, 0.388293, 1)
+
+[node name="ScoreContainer" type="HBoxContainer" parent="."]
+z_index = 1
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="ScoreContainer"]
+layout_mode = 2
+text = "Score:"
+
+[node name="ScoreValue" type="Label" parent="ScoreContainer"]
+layout_mode = 2
+text = "0"

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://chvp2wins4lnu"]
+
+[ext_resource type="Script" path="res://scenes/hand.gd" id="1_fiy81"]
+
+[node name="Hand" type="Node2D"]
+script = ExtResource("1_fiy81")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
