@@ -28,9 +28,11 @@ func setLevel(levelRef) -> void:
 func defeated(card) -> void:
 	print("Monster defeated")
 	card.setEssence(ESSENCE)
-	queue_free()
 	level.addScore(SCORE)
-	level.spawnMonster()
+	
+	# Erase self and references
+	queue_free()
+	level.currentMonster = null
 
 func attack() -> void:
 	level.decreaseScore(ATTACK)

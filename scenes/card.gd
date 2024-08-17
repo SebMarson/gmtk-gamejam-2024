@@ -5,14 +5,17 @@ var damage
 var effect
 var essence
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _init() -> void:
 	print("Created a card")
-	custom_minimum_size = $CardSprite.texture.get_size()
 	damage = RandomNumberGenerator.new().randi_range(1, 5)
-	$Label.text = str(damage)
 	effect = ""
 	essence = null
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	print("Card drawn")
+	custom_minimum_size = $CardSprite.texture.get_size()
+	$Label.text = str(damage)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -29,6 +32,10 @@ func setLevel(levelRef) -> void:
 func setEssence(ess) -> void:
 	print("Card essence set to " + ess)
 	essence = ess
+	
+	# Update shader
+	$CardSprite.material = level.shaders.get(ess)
+	print("Card sprite material updated")
 
 func play_card() -> void:
 	print("Card clicked on")

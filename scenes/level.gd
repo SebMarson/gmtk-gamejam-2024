@@ -4,10 +4,15 @@ var handScene : PackedScene = load("res://scenes/hand.tscn")
 var deckScene : PackedScene = load("res://scenes/deck.tscn")
 var monsterScene : PackedScene = load("res://scenes/monster.tscn")
 
+var shaders = {}
+
 var hand
 var drawDeck
 var discardDeck
 var currentMonster
+
+func _init() -> void:
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,12 +36,20 @@ func _ready() -> void:
 	hand.draw()
 	add_child(hand)
 	
+	loadShaders()
+	
 	# Load monster
 	spawnMonster()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func loadShaders() -> void:
+	var strong_shader_code: Shader = load("res://shaders/strong.gdshader")
+	var strong_shader = ShaderMaterial.new()
+	strong_shader.shader = strong_shader_code
+	shaders["STRONG"] = strong_shader
 
 func spawnMonster() -> void:
 	currentMonster = monsterScene.instantiate()
@@ -54,4 +67,7 @@ func decreaseScore(score) -> void:
 	$ScoreContainer/ScoreValue.text = str(int($ScoreContainer/ScoreValue.text) + score)
 
 func postUserGo() -> void:
-	currentMonster.attack()
+	if currentMonster != null:
+		currentMonster.attack()
+	else:
+		spawnMonster()
