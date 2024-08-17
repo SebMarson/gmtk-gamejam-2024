@@ -46,7 +46,8 @@ func addCard(card) -> void:
 	$Label.text = str(cards.size())
 	
 func addCards(newCards) -> void:
-	cards = newCards
+	cards.append_array(newCards)
+	$Label.text = str(cards.size())
 	
 func removeAllCards() -> Array:
 	var returnCards = cards

@@ -68,6 +68,13 @@ func decreaseScore(score) -> void:
 
 func postUserGo() -> void:
 	if currentMonster != null:
+		# Monster alive, continue fight
 		currentMonster.attack()
 	else:
+		# The monster is dead, shuffle cards back into draw deck
+		shuffleDiscard()
+		
+		# Show deck screen
+		# get_tree().change_scene_to_file("res://scenes/deck_screen.tscn")
+		
 		spawnMonster()

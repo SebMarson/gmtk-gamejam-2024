@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://x8vkx05g61si"]
+
+[ext_resource type="Script" path="res://scenes/deck_screen.gd" id="1_0qqtj"]
+
+[node name="DeckScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0qqtj")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
