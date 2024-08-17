@@ -49,3 +49,9 @@ func shuffleDiscard() -> void:
 
 func addScore(score) -> void:
 	$ScoreContainer/ScoreValue.text = str(int($ScoreContainer/ScoreValue.text) + score)
+	
+func decreaseScore(score) -> void:
+	$ScoreContainer/ScoreValue.text = str(int($ScoreContainer/ScoreValue.text) + score)
+
+func postUserGo() -> void:
+	currentMonster.attack()

@@ -44,7 +44,6 @@ theme_override_font_sizes/font_size = 45
 text = "test"
 
 [node name="CardSprite" type="Sprite2D" parent="."]
-scale = Vector2(1, 1)
 texture = ExtResource("1_ugj55")
 centered = false
 script = SubResource("GDScript_w4t4v")

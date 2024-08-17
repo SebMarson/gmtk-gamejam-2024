@@ -1,6 +1,9 @@
 extends Control
 
-var HEALTH = 5
+var HEALTH = 10
+var ATTACK = -1
+var SCORE = 3
+var ESSENCE = "STRONG"
 var level
 
 # Called when the node enters the scene tree for the first time.
@@ -13,17 +16,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func dealDamage(damage) -> void:
+func dealDamage(card, damage) -> void:
 	$VBoxContainer/HealthBar.value = $VBoxContainer/HealthBar.value - damage
 	$VBoxContainer/Label.text = str($VBoxContainer/HealthBar.value) + "HP"
 	if $VBoxContainer/HealthBar.value <= 0:
-		print("Monster defeated")
-		defeated()
+		defeated(card)
 
 func setLevel(levelRef) -> void:
 	level = levelRef
 
-func defeated() -> void:
+func defeated(card) -> void:
+	print("Monster defeated")
+	card.setEssence(ESSENCE)
 	queue_free()
-	level.addScore(1)
+	level.addScore(SCORE)
 	level.spawnMonster()
+
+func attack() -> void:
+	level.decreaseScore(ATTACK)

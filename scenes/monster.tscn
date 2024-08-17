@@ -28,5 +28,6 @@ step = 1.0
 show_percentage = false
 
 [node name="Tardigrade" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(120, 191)
+position = Vector2(-6, 38)
 texture = ExtResource("1_jbtjs")
+centered = false
