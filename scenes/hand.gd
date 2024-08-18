@@ -9,16 +9,15 @@ func _ready() -> void:
 	position = Vector2((1280/2), 550)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func setLevel(levelRef) -> void:
 	level = levelRef
 
 func draw() -> void:
-	var cardScene : PackedScene = load("res://scenes/card.tscn")
 	for n in (MAX_HAND_SIZE - cards.size()):
-		var card = level.drawDeck.getCardAtRandom()
+		var card = level.drawDeck.drawCard()
 		if card != null:
 			cards.append(card)
 		else:
@@ -26,8 +25,23 @@ func draw() -> void:
 	
 	for card in cards:
 		card.setLevel(level)
-		$HBoxContainer.add_child(card)
+		$HandHBoxContainer.add_child(card)
+		
+func discardHand() -> void:
+	# REMEMBER THIS IS ARRAY NOT ARRAYLIST, ITERATING AND REMOVING IS BAD
+	for card in cards:
+		# Remove this card from the hand on screen
+		$HandHBoxContainer.remove_child(card)
+		
+		# Add this card to the discard deck
+		level.discardDeck.addCard(card)
+		
+		# Mark self as no longer in play
+		card.inPlay = false
+		
+	# Clear cards array
+	cards = []
 
 func removeCard(card) -> void:
 	cards.erase(card)
-	$HBoxContainer.remove_child(card)
+	$HandHBoxContainer.remove_child(card)

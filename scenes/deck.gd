@@ -14,7 +14,7 @@ func _ready() -> void:
 	setupDeck()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _gui_input(event) -> void:
@@ -25,11 +25,16 @@ func _gui_input(event) -> void:
 			
 func setupDeck() -> void:
 	print("DECK SIZE: " + str(DECK_SIZE))
+	var cardScene : PackedScene = load("res://scenes/card.tscn")
 	if (DECK_SIZE > 0):
 		for n in DECK_SIZE:
-			var cardScene : PackedScene = load("res://scenes/card.tscn")
 			cards.append(cardScene.instantiate())
 	$Label.text = str(cards.size())
+	
+func drawCard() -> Node:
+	var card = getCardAtRandom()
+	card.inPlay = true
+	return card
 		
 func getCardAtRandom() -> Node:
 	if cards.size() > 0:

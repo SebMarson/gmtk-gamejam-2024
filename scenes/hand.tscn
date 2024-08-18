@@ -5,7 +5,7 @@
 [node name="Hand" type="Node2D"]
 script = ExtResource("1_fiy81")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HandHBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

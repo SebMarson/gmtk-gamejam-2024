@@ -3,12 +3,16 @@ extends Node2D
 var handScene : PackedScene = load("res://scenes/hand.tscn")
 var deckScene : PackedScene = load("res://scenes/deck.tscn")
 var monsterScene : PackedScene = load("res://scenes/monster.tscn")
+var deckScreenScene = load("res://scenes/deck_screen.tscn")
 
 var shaders = {}
 
+# UI Elements
 var hand
 var drawDeck
 var discardDeck
+var deckScreen
+
 var currentMonster
 
 func _init() -> void:
@@ -36,13 +40,19 @@ func _ready() -> void:
 	hand.draw()
 	add_child(hand)
 	
+	# Initialize deck screen
+	deckScreen = deckScreenScene.instantiate()
+	deckScreen.setLevel(self)
+	deckScreen.position = Vector2(200, 100)
+	deckScreen.size = Vector2(900, 500)
+	
 	loadShaders()
 	
 	# Load monster
 	spawnMonster()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func loadShaders() -> void:
@@ -75,10 +85,26 @@ func postUserGo() -> void:
 		# Monster alive, continue fight
 		currentMonster.attack()
 	else:
+		# Discard hand into the discard deckz
+		hand.discardHand()
+		
 		# The monster is dead, shuffle cards back into draw deck
 		shuffleDiscard()
 		
 		# Show deck screen
-		# get_tree().change_scene_to_file("res://scenes/deck_screen.tscn")
+		remove_child(hand)
+		remove_child(drawDeck)
+		remove_child(discardDeck)
+		add_child(deckScreen)
+		deckScreen.loadCards()
+
+func continueFights() -> void:
+		# Hide deck screen
+		add_child(hand)
+		add_child(drawDeck)
+		add_child(discardDeck)
+		remove_child(deckScreen)
 		
 		spawnMonster()
+		hand.draw()
+	

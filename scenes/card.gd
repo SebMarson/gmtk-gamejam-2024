@@ -1,24 +1,32 @@
 extends Control
 
 var level
-var damage
+var damage: int
 var effect
 var essence
+
+# Set to true if the card is in the hand, in play, set to false if it's in the deck
+var inPlay: bool
+
+# Set to 0 if it's not currently selected, set to 1 if it has been selected
+var selected: bool
 
 func _init() -> void:
 	print("Created a card")
 	damage = RandomNumberGenerator.new().randi_range(1, 5)
 	effect = ""
 	essence = null
+	inPlay = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Card drawn")
 	custom_minimum_size = $CardSprite.texture.get_size()
 	$Label.text = str(damage)
+	selected = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _gui_input(event) -> void:
@@ -39,15 +47,20 @@ func setEssence(ess) -> void:
 
 func play_card() -> void:
 	print("Card clicked on")
-	if (damage > 0):
-		level.currentMonster.dealDamage(self, damage)
-	
-	# Remove this card from the hand
-	#level.hand.cards.erase(self)
-	level.hand.removeCard(self)
-	
-	# Add this card to the discard deck
-	level.discardDeck.addCard(self)
-	
-	# Prompt level to do its post user-go stuff
-	level.postUserGo()
+	if (inPlay):
+		if (damage > 0) and (level.currentMonster != null):
+			level.currentMonster.dealDamage(self, damage)
+		
+		# Remove this card from the hand
+		level.hand.removeCard(self)
+		
+		# Add this card to the discard deck
+		level.discardDeck.addCard(self)
+		
+		# Mark self as no longer in play
+		inPlay = false
+		
+		# Prompt level to do its post user-go stuff
+		level.postUserGo()
+	else:
+		print("Mitosis")

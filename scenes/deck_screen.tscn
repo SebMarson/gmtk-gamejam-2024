@@ -1,15 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://x8vkx05g61si"]
+[gd_scene load_steps=6 format=3 uid="uid://x8vkx05g61si"]
 
 [ext_resource type="Script" path="res://scenes/deck_screen.gd" id="1_0qqtj"]
+[ext_resource type="Texture2D" uid="uid://dxbhyw2ebh0p8" path="res://graphics/buttons/mitosis_button.png" id="2_kt3am"]
+[ext_resource type="Texture2D" uid="uid://dm01lnakw02g4" path="res://graphics/buttons/mitosis_button_hover.png" id="3_w0jxm"]
+[ext_resource type="Texture2D" uid="uid://c4f5wv02d0yo" path="res://graphics/buttons/continue_button.png" id="4_jvemk"]
+[ext_resource type="Texture2D" uid="uid://k1t62vgoi8gu" path="res://graphics/buttons/continue_button_hover.png" id="5_u71p8"]
 
 [node name="DeckScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 800.0
+offset_bottom = 500.0
 script = ExtResource("1_0qqtj")
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="DeckSVBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="DeckSScrollContainer" type="ScrollContainer" parent="DeckSVBoxContainer"]
+layout_mode = 2
+
+[node name="DeckSGridContainer" type="GridContainer" parent="DeckSVBoxContainer/DeckSScrollContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="DeckSHBoxContainer" type="HBoxContainer" parent="DeckSVBoxContainer"]
+layout_mode = 2
+
+[node name="MitosisButton" type="TextureButton" parent="DeckSVBoxContainer/DeckSHBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_kt3am")
+texture_pressed = ExtResource("3_w0jxm")
+
+[node name="ContinueButton" type="TextureButton" parent="DeckSVBoxContainer/DeckSHBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_jvemk")
+texture_pressed = ExtResource("5_u71p8")
+
+[connection signal="pressed" from="DeckSVBoxContainer/DeckSHBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
