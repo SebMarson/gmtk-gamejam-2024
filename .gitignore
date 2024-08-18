@@ -4,3 +4,4 @@
 
 # Compiled exports
 *.exe
+/exports/*
