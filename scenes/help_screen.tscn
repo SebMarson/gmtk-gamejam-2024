@@ -14,6 +14,7 @@ offset_bottom = 720.0
 color = Color(0.170574, 0.383307, 0.627234, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = 2
 offset_left = 600.0
 offset_top = 200.0
 offset_right = 763.0
@@ -28,14 +29,6 @@ offset_bottom = 561.0
 theme_override_font_sizes/normal_font_size = 30
 text = "Play cards to deal damage to your enemies."
 fit_content = true
-
-[node name="BackButton" type="TextureButton" parent="."]
-offset_left = 555.0
-offset_top = 557.0
-offset_right = 718.0
-offset_bottom = 625.0
-texture_normal = ExtResource("2_w1egf")
-texture_hover = ExtResource("3_3glo2")
 
 [node name="HelpText2" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(800, 400)
@@ -57,4 +50,12 @@ theme_override_font_sizes/normal_font_size = 30
 text = "Select cards to undergo mitosis to unlock the power they've absorbed."
 fit_content = true
 
-[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 576.0
+offset_top = 561.0
+offset_right = 739.0
+offset_bottom = 629.0
+texture_normal = ExtResource("2_w1egf")
+texture_hover = ExtResource("3_3glo2")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
