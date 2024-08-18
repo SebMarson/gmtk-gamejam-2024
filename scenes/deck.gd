@@ -30,7 +30,7 @@ func setupDeck() -> void:
 		for n in DECK_SIZE:
 			var damage = RandomNumberGenerator.new().randi_range(1, 5)
 			var newCard = cardScene.instantiate()
-			newCard.setDamage(damage)
+			newCard.setPower(damage)
 			newCard.setLevel(level)
 			cards.append(newCard)
 	$Label.text = str(cards.size())

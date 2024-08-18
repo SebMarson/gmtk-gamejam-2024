@@ -5,8 +5,8 @@
 [node name="Monster" instance=ExtResource("1_wbeyy")]
 NAME = "DUST_MITE"
 HEALTH = 5
-ATTACK = -2
+ATTACK = 2
 SCORE = 5
-ESSENCE = "DARKNESS"
+ESSENCENAME = "DARKNESS"
 IMG_PATH = "res://graphics/monsters/dust_mite.png"
 SIZE = 5

@@ -1,9 +1,9 @@
 extends Control
 
 var level
-var damage: int
-var effect
-var essence
+var power: int
+var effect: Essence
+var essence: Essence
 
 # Set to true if the card is in the hand, in play, set to false if it's in the deck
 var inPlay: bool
@@ -13,14 +13,12 @@ var selected: bool
 
 func _init() -> void:
 	print("Created a card")
-	effect = ""
-	essence = null
 	inPlay = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	custom_minimum_size = $CardSprite.texture.get_size()
-	$Label.text = str(damage)
+	$Label.text = str(power)
 	selected = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,21 +33,34 @@ func _gui_input(event) -> void:
 func setLevel(levelRef) -> void:
 	level = levelRef
 	
-func setDamage(damage) -> void:
-	self.damage = damage
+func setPower(power) -> void:
+	self.power = power
 	
-func setEssence(ess) -> void:
-	print("Card essence set to " + ess)
-	essence = ess
+func defeatedMonster(monster) -> void:
+	setEssence(monster.essence)
+	increasePower(monster.SCORE)
+	
+func setEssence(essence: Essence) -> void:
+	print("Card essence set to " + essence.name)
+	self.essence = essence
 	
 	# Update shader
-	$CardSprite.material = level.shaders.get(ess)
+	$CardSprite.material = essence.shader
 	print("Card sprite material updated")
+	
+func increasePower(amount) -> void:
+	print("Card power increased by " + str(amount))
+	power += amount
+	$Label.text = str(power)
 	
 # Called when this card is drawn
 func drawn() -> void:
 	print("Card drawn")
-	var scaleFactor = float(damage)/float(level.score)
+	var scaleFactor = float(power)/float(level.score)
+	if scaleFactor < 1:
+		scaleFactor = max(0.5, scaleFactor)
+	else:
+		scaleFactor = min(1.5, scaleFactor)
 	$CardSprite.scale = Vector2(scaleFactor, scaleFactor)
 	
 	# Mark self as in play
@@ -74,14 +85,15 @@ func discard() -> void:
 func play_card() -> void:
 	print("Card clicked on")
 	if (inPlay):
-		# Do damage
-		if (damage > 0) and (level.currentMonster != null):
-			level.currentMonster.dealDamage(self, damage)
-		
 		# Do effects
-		match(effect):
-			_:
-				print("No effect on card")
+		if (essence != null):
+			essence.executeCardPlayed(level, level.currentMonster, self)
+		else:
+			print("No effect on card")
+			
+		# Deal base damage to monster
+		if (power > 0) and (level.currentMonster != null):
+			level.currentMonster.dealDamage(self, power)
 		
 		# Discard
 		discard()

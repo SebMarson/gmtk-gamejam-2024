@@ -5,8 +5,6 @@ var deckScene : PackedScene = load("res://scenes/deck.tscn")
 var monsterScene : PackedScene = load("res://scenes/monster.tscn")
 var deckScreenScene = load("res://scenes/deck_screen.tscn")
 
-var shaders = {}
-
 # UI Elements
 var hand
 var drawDeck
@@ -15,9 +13,10 @@ var deckScreen
 
 # Internal vars
 var currentMonster
-var score = 10
+var score: float = 10
 
 var monsterFactory = MonsterFactory.new()
+var essenceManager = EssenceManager.new()
 
 func _init() -> void:
 	pass
@@ -50,11 +49,8 @@ func _ready() -> void:
 	deckScreen.position = Vector2(200, 100)
 	deckScreen.size = Vector2(900, 500)
 	
-	
-	loadShaders()
-	
 	# Setup score board
-	$ScoreContainer/ScoreValue.text = str(score)
+	setSizeValue()
 	
 	# Load monster
 	spawnMonster()
@@ -62,16 +58,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
-
-func loadShaders() -> void:
-	loadShader("STRONG", "res://shaders/strong.gdshader")
-	loadShader("DARKNESS", "res://shaders/darkness.gdshader")
-	
-func loadShader(name, path) -> void:
-	var shader_code: Shader = load(path)
-	var shader = ShaderMaterial.new()
-	shader.shader = shader_code
-	shaders[name] = shader
 
 func spawnMonster() -> void:
 	#currentMonster = monsterScene.instantiate()
@@ -86,10 +72,13 @@ func shuffleDiscard() -> void:
 
 func addScore(newScore) -> void:
 	score += newScore
-	$ScoreContainer/ScoreValue.text = str(score)
+	setSizeValue()
 	
 func decreaseScore(newScore) -> void:
 	score -= newScore
+	setSizeValue()
+	
+func setSizeValue() -> void:
 	$ScoreContainer/ScoreValue.text = str(score)
 
 func postUserGo() -> void:

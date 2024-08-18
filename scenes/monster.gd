@@ -10,21 +10,23 @@ var level
 @export var HEALTH = 10
 @export var ATTACK = 0
 @export var SCORE = 3
-@export var ESSENCE = ""
+@export var ESSENCENAME = ""
 @export var IMG_PATH = ""
 @export var SIZE: int = 0
 
 # Common monster vars
 var hitSound
 var sprite
+var essence
 
 func _init():
 	assert(self != Monster, "Monster is an abstract class and cannot be instantiated directly.")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Load image
+	# Load properties
 	load_sprite()
+	load_essence()
 	
 	# Set health bar up
 	$VBoxContainer/HealthBar.max_value = HEALTH
@@ -48,7 +50,15 @@ func load_sprite():
 		
 	# Scale image based on the players current score
 	var scaleFactor: float = float(HEALTH)/float(level.score)
+	if scaleFactor < 1:
+		scaleFactor = max(0.3, scaleFactor)
+	else:
+		scaleFactor = min(1.5, scaleFactor)
 	$VBoxContainer/MonsterSprite.scale = Vector2(scaleFactor, scaleFactor)
+	
+func load_essence() -> void:
+	if (ESSENCENAME != null):
+		essence = level.essenceManager.getEssence(ESSENCENAME)
 	
 func load_sounds():
 	hitSound = $HitHurt
@@ -65,7 +75,7 @@ func setLevel(levelRef) -> void:
 
 func defeated(card) -> void:
 	print("Monster defeated")
-	card.setEssence(ESSENCE)
+	card.defeatedMonster(self)
 	level.addScore(SCORE)
 	
 	# Erase self and references
