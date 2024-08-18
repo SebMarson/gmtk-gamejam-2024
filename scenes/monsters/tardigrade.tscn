@@ -4,6 +4,7 @@
 
 [node name="Monster" instance=ExtResource("1_0ol34")]
 NAME = "TARDIGRADE"
+ATTACK = -1
 ESSENCE = "STRONG"
 IMG_PATH = "res://graphics/monsters/tardigrade.png"
 SIZE = 5

@@ -28,12 +28,15 @@ func setupDeck() -> void:
 	var cardScene : PackedScene = load("res://scenes/card.tscn")
 	if (DECK_SIZE > 0):
 		for n in DECK_SIZE:
-			cards.append(cardScene.instantiate())
+			var damage = RandomNumberGenerator.new().randi_range(1, 5)
+			var newCard = cardScene.instantiate()
+			newCard.setDamage(damage)
+			newCard.setLevel(level)
+			cards.append(newCard)
 	$Label.text = str(cards.size())
 	
 func drawCard() -> Node:
 	var card = getCardAtRandom()
-	card.inPlay = true
 	return card
 		
 func getCardAtRandom() -> Node:

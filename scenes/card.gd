@@ -13,14 +13,12 @@ var selected: bool
 
 func _init() -> void:
 	print("Created a card")
-	damage = RandomNumberGenerator.new().randi_range(1, 5)
 	effect = ""
 	essence = null
 	inPlay = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("Card drawn")
 	custom_minimum_size = $CardSprite.texture.get_size()
 	$Label.text = str(damage)
 	selected = false
@@ -37,6 +35,9 @@ func _gui_input(event) -> void:
 func setLevel(levelRef) -> void:
 	level = levelRef
 	
+func setDamage(damage) -> void:
+	self.damage = damage
+	
 func setEssence(ess) -> void:
 	print("Card essence set to " + ess)
 	essence = ess
@@ -44,21 +45,46 @@ func setEssence(ess) -> void:
 	# Update shader
 	$CardSprite.material = level.shaders.get(ess)
 	print("Card sprite material updated")
+	
+# Called when this card is drawn
+func drawn() -> void:
+	print("Card drawn")
+	var scaleFactor = float(damage)/float(level.score)
+	$CardSprite.scale = Vector2(scaleFactor, scaleFactor)
+	
+	# Mark self as in play
+	inPlay = true
+	
+# Called when this card is discarded during play
+func discard() -> void:
+	print("Card discarded")
+	# Scale back to normal
+	$CardSprite.scale = Vector2(1, 1)
+	
+	# Mark self as no longer in play
+	inPlay = false
+	
+	# Remove self from hand
+	level.hand.removeCardFromHand(self)
+	
+	# Add self to discard deck
+	level.discardDeck.addCard(self)
+
 
 func play_card() -> void:
 	print("Card clicked on")
 	if (inPlay):
+		# Do damage
 		if (damage > 0) and (level.currentMonster != null):
 			level.currentMonster.dealDamage(self, damage)
 		
-		# Remove this card from the hand
-		level.hand.removeCard(self)
+		# Do effects
+		match(effect):
+			_:
+				print("No effect on card")
 		
-		# Add this card to the discard deck
-		level.discardDeck.addCard(self)
-		
-		# Mark self as no longer in play
-		inPlay = false
+		# Discard
+		discard()
 		
 		# Prompt level to do its post user-go stuff
 		level.postUserGo()
