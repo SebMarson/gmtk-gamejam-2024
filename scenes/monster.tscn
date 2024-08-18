@@ -28,8 +28,7 @@ step = 1.0
 show_percentage = false
 
 [node name="MonsterSprite" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-6, 38)
-centered = false
+position = Vector2(119, 198)
 
 [node name="HitHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_apwvi")

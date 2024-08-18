@@ -5,7 +5,10 @@ class_name MonsterFactory
 # Monster scene list:
 # 0 - Tardigrade
 # 1 - Dust mite
-var monster_scenes = [load("res://scenes/monsters/tardigrade.tscn"),load("res://scenes/monsters/dust_mite.tscn")]
+# 2 - Ant
+# 3 - Worm
+# 4 - Cat
+var monster_scenes = ["tardigrade","dust_mite","ant","worm","cat"]
 
 var rng = RandomNumberGenerator.new()
 
@@ -15,5 +18,9 @@ func generateMonster(score) -> Node:
 	
 	var monster = null
 	if (score < 30):
-		monster = monster_scenes[rng.randi_range(0, 1)].instantiate()
+		monster = load("res://scenes/monsters/" + monster_scenes[rng.randi_range(0, 1)] + ".tscn").instantiate()
+	elif (score < 40):
+		monster = load("res://scenes/monsters/" + monster_scenes[rng.randi_range(2, 3)] + ".tscn").instantiate()
+	elif (score < 50):
+		monster = load("res://scenes/monsters/" + monster_scenes[rng.randi_range(4, 4)] + ".tscn").instantiate()
 	return monster

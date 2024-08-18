@@ -13,7 +13,9 @@ var drawDeck
 var discardDeck
 var deckScreen
 
+# Internal vars
 var currentMonster
+var score = 10
 
 var monsterFactory = MonsterFactory.new()
 
@@ -48,7 +50,11 @@ func _ready() -> void:
 	deckScreen.position = Vector2(200, 100)
 	deckScreen.size = Vector2(900, 500)
 	
+	
 	loadShaders()
+	
+	# Setup score board
+	$ScoreContainer/ScoreValue.text = str(score)
 	
 	# Load monster
 	spawnMonster()
@@ -70,7 +76,7 @@ func loadShader(name, path) -> void:
 func spawnMonster() -> void:
 	#currentMonster = monsterScene.instantiate()
 	#currentMonster.position = Vector2((1280/2), 100)
-	currentMonster = monsterFactory.generateMonster(int($ScoreContainer/ScoreValue.text))
+	currentMonster = monsterFactory.generateMonster(score)
 	currentMonster.position = Vector2((1280/2), 100)
 	currentMonster.setLevel(self)
 	add_child(currentMonster)
@@ -78,11 +84,13 @@ func spawnMonster() -> void:
 func shuffleDiscard() -> void:
 	drawDeck.addCards(discardDeck.removeAllCards())
 
-func addScore(score) -> void:
-	$ScoreContainer/ScoreValue.text = str(int($ScoreContainer/ScoreValue.text) + score)
+func addScore(newScore) -> void:
+	score += newScore
+	$ScoreContainer/ScoreValue.text = str(score)
 	
-func decreaseScore(score) -> void:
-	$ScoreContainer/ScoreValue.text = str(int($ScoreContainer/ScoreValue.text) + score)
+func decreaseScore(newScore) -> void:
+	score -= newScore
+	$ScoreContainer/ScoreValue.text = str(score)
 
 func postUserGo() -> void:
 	if currentMonster != null:

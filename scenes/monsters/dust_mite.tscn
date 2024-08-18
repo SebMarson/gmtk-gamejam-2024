@@ -9,3 +9,4 @@ ATTACK = -2
 SCORE = 5
 ESSENCE = "DARKNESS"
 IMG_PATH = "res://graphics/monsters/dust_mite.png"
+SIZE = 5

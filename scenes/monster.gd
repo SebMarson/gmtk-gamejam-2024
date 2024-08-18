@@ -12,6 +12,7 @@ var level
 @export var SCORE = 3
 @export var ESSENCE = ""
 @export var IMG_PATH = ""
+@export var SIZE: int = 0
 
 # Common monster vars
 var hitSound
@@ -40,7 +41,7 @@ func _process(_delta: float) -> void:
 func load_sprite():
 	#sprite = Sprite2D.new()
 	#sprite.position = Vector2(-6, 36)
-	$VBoxContainer/MonsterSprite.position = Vector2(-6, 38)
+	# $VBoxContainer/MonsterSprite.position = Vector2(-6, 38)
 	var texture = load(IMG_PATH)
 	if texture:
 		# var spriteNode = get_node("VBoxContainer/MonsterSprite")
@@ -48,11 +49,16 @@ func load_sprite():
 		$VBoxContainer/MonsterSprite.texture = texture
 	else:
 		print("Error: Could not load texture at path:", IMG_PATH)
-	add_child(sprite)
+		
+	# Scale image based on the players current score
+	var scaleFactor: float = float(HEALTH)/float(level.score)
+	$VBoxContainer/MonsterSprite.scale = Vector2(scaleFactor, scaleFactor)
+	#add_child(sprite)
 	
 func load_sounds():
 	hitSound = AudioStreamPlayer2D.new()
 	hitSound.stream = load("res://audio/effects/hitHurt.wav")
+	add_child(hitSound)
 
 func dealDamage(card, damage) -> void:
 	hitSound.play()

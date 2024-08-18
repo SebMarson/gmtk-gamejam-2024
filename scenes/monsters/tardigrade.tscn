@@ -6,3 +6,4 @@
 NAME = "TARDIGRADE"
 ESSENCE = "STRONG"
 IMG_PATH = "res://graphics/monsters/tardigrade.png"
+SIZE = 5
