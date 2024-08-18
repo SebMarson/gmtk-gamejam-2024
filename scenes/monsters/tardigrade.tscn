@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlxb5im1i6sk2"]
+
+[ext_resource type="PackedScene" uid="uid://bmwqh6i3gley2" path="res://scenes/monster.tscn" id="1_0ol34"]
+
+[node name="Monster" instance=ExtResource("1_0ol34")]
+NAME = "TARDIGRADE"
+ESSENCE = "STRONG"
+IMG_PATH = "res://graphics/monsters/tardigrade.png"

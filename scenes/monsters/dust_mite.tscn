@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4k6i1g1rbcj1"]
+
+[ext_resource type="PackedScene" uid="uid://bmwqh6i3gley2" path="res://scenes/monster.tscn" id="1_wbeyy"]
+
+[node name="Monster" instance=ExtResource("1_wbeyy")]
+NAME = "DUST_MITE"
+HEALTH = 5
+ATTACK = -2
+SCORE = 5
+ESSENCE = "DARKNESS"
+IMG_PATH = "res://graphics/monsters/dust_mite.png"

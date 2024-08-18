@@ -15,6 +15,8 @@ var deckScreen
 
 var currentMonster
 
+var monsterFactory = MonsterFactory.new()
+
 func _init() -> void:
 	pass
 
@@ -66,7 +68,9 @@ func loadShader(name, path) -> void:
 	shaders[name] = shader
 
 func spawnMonster() -> void:
-	currentMonster = monsterScene.instantiate()
+	#currentMonster = monsterScene.instantiate()
+	#currentMonster.position = Vector2((1280/2), 100)
+	currentMonster = monsterFactory.generateMonster(int($ScoreContainer/ScoreValue.text))
 	currentMonster.position = Vector2((1280/2), 100)
 	currentMonster.setLevel(self)
 	add_child(currentMonster)
