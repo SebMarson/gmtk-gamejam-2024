@@ -4,12 +4,14 @@ var handScene : PackedScene = load("res://scenes/hand.tscn")
 var deckScene : PackedScene = load("res://scenes/deck.tscn")
 var monsterScene : PackedScene = load("res://scenes/monster.tscn")
 var deckScreenScene = load("res://scenes/deck_screen.tscn")
+var mitosisScene = load("res://scenes/mitosis_screen.tscn")
 
 # UI Elements
 var hand
 var drawDeck
 var discardDeck
 var deckScreen
+var mitosisScreen
 
 # Internal vars
 var currentMonster
@@ -25,7 +27,7 @@ func _init() -> void:
 func _ready() -> void:
 	# Initialize Draw Deck
 	drawDeck = deckScene.instantiate()
-	drawDeck.setup(25)
+	drawDeck.setup(15)
 	drawDeck.setLevel(self)
 	drawDeck.position = Vector2(1100, 500)
 	add_child(drawDeck)
@@ -48,6 +50,13 @@ func _ready() -> void:
 	deckScreen.setLevel(self)
 	deckScreen.position = Vector2(200, 100)
 	deckScreen.size = Vector2(900, 500)
+	
+	# Initialize mitosis screen
+	mitosisScreen = mitosisScene.instantiate()
+	mitosisScreen.setLevel(self)
+	mitosisScreen.position = Vector2(600, 100)
+	mitosisScreen.size = Vector2(900, 500)
+	
 	
 	# Setup score board
 	setSizeValue()
@@ -92,12 +101,24 @@ func postUserGo() -> void:
 		# The monster is dead, shuffle cards back into draw deck
 		shuffleDiscard()
 		
+		goToDeckScreen()
+		
+func goToDeckScreen() -> void:
 		# Show deck screen
 		remove_child(hand)
 		remove_child(drawDeck)
 		remove_child(discardDeck)
 		add_child(deckScreen)
 		deckScreen.loadCards()
+		
+func goToMitosisScreen(originalCard, newCards) -> void:
+		# Show deck screen
+		remove_child(hand)
+		remove_child(drawDeck)
+		remove_child(discardDeck)
+		remove_child(deckScreen)
+		add_child(mitosisScreen)
+		mitosisScreen.loadCards(originalCard, newCards)
 
 func continueFights() -> void:
 		# Hide deck screen
@@ -105,6 +126,7 @@ func continueFights() -> void:
 		add_child(drawDeck)
 		add_child(discardDeck)
 		remove_child(deckScreen)
+		remove_child(mitosisScreen)
 		
 		spawnMonster()
 		hand.draw()

@@ -38,4 +38,5 @@ layout_mode = 2
 texture_normal = ExtResource("4_jvemk")
 texture_pressed = ExtResource("5_u71p8")
 
+[connection signal="pressed" from="DeckSVBoxContainer/DeckSHBoxContainer/MitosisButton" to="." method="_on_mitosis_button_pressed"]
 [connection signal="pressed" from="DeckSVBoxContainer/DeckSHBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

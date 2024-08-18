@@ -12,8 +12,9 @@ func _init() -> void:
 # Performs some action after a card has been played
 func executeCardPlayed(level, monster, card) -> void:
 	pass
-
+	
+	
 # Performs some action after mitosis on a card
-func executeCardMitosis(level, monster, originalCard, newCardArray) -> void:
+func executeCardMitosis(level, originalCard, newCardArray) -> void:
 	for card in newCardArray:
 		card.power = originalCard.power

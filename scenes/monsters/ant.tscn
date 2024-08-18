@@ -4,5 +4,5 @@
 
 [node name="Monster" instance=ExtResource("1_6p8pe")]
 NAME = "ANT"
-ESSENCE = "STRONG"
+ESSENCENAME = "STRONG"
 IMG_PATH = "res://graphics/monsters/ant.png"

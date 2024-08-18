@@ -22,5 +22,5 @@ func executeCardPlayed(level, monster, card) -> void:
 	pass
 
 # Performs some action after mitosis on a card
-func executeCardMitosis(level, monster, originalCard, newCardArray) -> void:
+func executeCardMitosis(level, originalCard, newCardArray) -> void:
 	pass

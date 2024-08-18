@@ -28,7 +28,11 @@ func _process(_delta: float) -> void:
 func _gui_input(event) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-			play_card()
+			print("Card clicked on")
+			if (inPlay):
+				play_card()
+			else:
+				level.deckScreen.cardClicked(self)
 
 func setLevel(levelRef) -> void:
 	level = levelRef
@@ -83,22 +87,21 @@ func discard() -> void:
 
 
 func play_card() -> void:
-	print("Card clicked on")
-	if (inPlay):
-		# Do effects
-		if (essence != null):
-			essence.executeCardPlayed(level, level.currentMonster, self)
-		else:
-			print("No effect on card")
-			
-		# Deal base damage to monster
-		if (power > 0) and (level.currentMonster != null):
-			level.currentMonster.dealDamage(self, power)
-		
-		# Discard
-		discard()
-		
-		# Prompt level to do its post user-go stuff
-		level.postUserGo()
+	# Do effects
+	if (essence != null):
+		essence.executeCardPlayed(level, level.currentMonster, self)
 	else:
-		print("Mitosis")
+		print("No effect on card")
+		
+	# Deal base damage to monster
+	if (power > 0) and (level.currentMonster != null):
+		level.currentMonster.dealDamage(self, power)
+	
+	# Discard
+	discard()
+	
+	# Prompt level to do its post user-go stuff
+	level.postUserGo()
+
+func killSelf() -> void:
+	queue_free()

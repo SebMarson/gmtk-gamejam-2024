@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv1nroopgvfce"]
+
+[ext_resource type="Script" path="res://scenes/help_screen.gd" id="1_uchn5"]
+[ext_resource type="Texture2D" uid="uid://dox01wd67swwr" path="res://graphics/buttons/back_button.png" id="2_w1egf"]
+[ext_resource type="Texture2D" uid="uid://dlv4ev1vyfiw3" path="res://graphics/buttons/back_button_hover.png" id="3_3glo2"]
+
+[node name="HelpScreen" type="Node2D"]
+script = ExtResource("1_uchn5")
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -1
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.170574, 0.383307, 0.627234, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 600.0
+offset_top = 200.0
+offset_right = 763.0
+offset_bottom = 272.0
+
+[node name="HelpText" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(800, 400)
+offset_left = 319.0
+offset_top = 161.0
+offset_right = 1119.0
+offset_bottom = 561.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Play cards to deal damage to your enemies."
+fit_content = true
+
+[node name="BackButton" type="TextureButton" parent="."]
+offset_left = 555.0
+offset_top = 557.0
+offset_right = 718.0
+offset_bottom = 625.0
+texture_normal = ExtResource("2_w1egf")
+texture_hover = ExtResource("3_3glo2")
+
+[node name="HelpText2" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(800, 400)
+offset_left = 266.0
+offset_top = 266.0
+offset_right = 1066.0
+offset_bottom = 666.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Cards that deal the killing blow absorb power and essence."
+fit_content = true
+
+[node name="HelpText3" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = 271.0
+offset_top = 398.0
+offset_right = 1071.0
+offset_bottom = 798.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Select cards to undergo mitosis to unlock the power they've absorbed."
+fit_content = true
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

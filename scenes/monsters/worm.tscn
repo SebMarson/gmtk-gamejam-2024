@@ -4,5 +4,5 @@
 
 [node name="Monster" instance=ExtResource("1_htp5g")]
 NAME = "WORM"
-ESSENCE = "DARKNESS"
+ESSENCENAME = "DARKNESS"
 IMG_PATH = "res://graphics/monsters/worm.png"
