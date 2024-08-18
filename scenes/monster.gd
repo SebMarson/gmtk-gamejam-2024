@@ -36,16 +36,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	# Have the skew and position change slightly here to simulate movement... Or acutally animate it?
 	pass
 	
 func load_sprite():
-	#sprite = Sprite2D.new()
-	#sprite.position = Vector2(-6, 36)
-	# $VBoxContainer/MonsterSprite.position = Vector2(-6, 38)
 	var texture = load(IMG_PATH)
 	if texture:
-		# var spriteNode = get_node("VBoxContainer/MonsterSprite")
-		#sprite.texture = texture
 		$VBoxContainer/MonsterSprite.texture = texture
 	else:
 		print("Error: Could not load texture at path:", IMG_PATH)
@@ -53,12 +49,9 @@ func load_sprite():
 	# Scale image based on the players current score
 	var scaleFactor: float = float(HEALTH)/float(level.score)
 	$VBoxContainer/MonsterSprite.scale = Vector2(scaleFactor, scaleFactor)
-	#add_child(sprite)
 	
 func load_sounds():
-	hitSound = AudioStreamPlayer2D.new()
-	hitSound.stream = load("res://audio/effects/hitHurt.wav")
-	add_child(hitSound)
+	hitSound = $HitHurt
 
 func dealDamage(card, damage) -> void:
 	hitSound.play()
