@@ -85,7 +85,7 @@ func _on_mitosis_button_pressed() -> void:
 			newCards.append(newCardTwo)
 			
 			if (card.essence != null):
-				card.essence.executeCardMitosis(level, card, newCards)
+				card.doMitosis(level, newCards)
 				
 			# Add cards to deck
 			for newCard in newCards:

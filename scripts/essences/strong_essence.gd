@@ -7,7 +7,9 @@ func _init() -> void:
 	description = "No power split after mitosis"
 	power = 0
 	shaderPath = "res://shaders/strong.gdshader"
-	loadShader()
+	partialShaderPath = "res://shaders/strong_partial.gdshader"
+	cardSpritePath = "res://graphics/cards/strong-card.png"
+	loadResources()
 
 # Performs some action after a card has been played
 func executeCardPlayed(level, monster, card) -> void:

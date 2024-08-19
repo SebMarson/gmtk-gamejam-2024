@@ -8,6 +8,8 @@ func _init() -> void:
 	# Load essences
 	addEssence(StrongEssence.new())
 	addEssence(DarknessEssence.new())
+	addEssence(FastEssence.new())
+	addEssence(LightEssence.new())
 	
 	print("Essences loaded")
 	

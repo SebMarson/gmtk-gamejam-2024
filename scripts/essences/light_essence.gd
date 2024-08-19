@@ -1,13 +1,12 @@
 extends Essence
 
-class_name DarknessEssence
+class_name LightEssence
 
 func _init() -> void:
-	name = "DARKNESS"
-	description = "Multiply damage of next card"
+	name = "LIGHT"
+	description = "Blinds enemy for 1 turn"
 	power = 0
-	shaderPath = "res://shaders/darkness.gdshader"
-	partialShaderPath = "res://shaders/darkness_partial.gdshader"
+	shaderPath = "res://shaders/light.gdshader"
 	loadResources()
 
 # Performs some action after a card has been played

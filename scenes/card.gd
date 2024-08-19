@@ -44,13 +44,28 @@ func defeatedMonster(monster) -> void:
 	setEssence(monster.essence)
 	increasePower(monster.SCORE)
 	
+func doMitosis(level, newCards) -> void:
+	for card in newCards:
+		card.setEffect(self.essence)
+	essence.executeCardMitosis(level, self, newCards)
+	
 func setEssence(essence: Essence) -> void:
 	print("Card essence set to " + essence.name)
 	self.essence = essence
 	
 	# Update shader
-	$CardSprite.material = essence.shader
-	print("Card sprite material updated")
+	$CardSprite.material = essence.partialShader
+	
+func setEffect(effect: Essence) -> void:
+	print("Card effect set to " + effect.name)
+	self.essence = null
+	self.effect = effect
+	
+	# Remove shader
+	$CardSprite.material = null
+	# Set texture
+	$CardSprite.texture = effect.cardSprite
+	print("Card texture updated")
 	
 func increasePower(amount) -> void:
 	print("Card power increased by " + str(amount))
@@ -60,7 +75,7 @@ func increasePower(amount) -> void:
 # Called when this card is drawn
 func drawn() -> void:
 	print("Card drawn")
-	var scaleFactor = float(power)/float(level.score)
+	var scaleFactor = (float(power) + (float(level.score)*0.5)) / float(level.score)
 	if scaleFactor < 1:
 		scaleFactor = max(0.5, scaleFactor)
 	else:
