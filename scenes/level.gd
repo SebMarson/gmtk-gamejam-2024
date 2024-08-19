@@ -15,7 +15,7 @@ var mitosisScreen
 
 # Internal vars
 var currentMonster
-var score: float = 10
+var score: float = 5
 
 var monsterFactory = MonsterFactory.new()
 var essenceManager = EssenceManager.new()
@@ -101,6 +101,10 @@ func postUserGo() -> void:
 		# The monster is dead, shuffle cards back into draw deck
 		shuffleDiscard()
 		
+		# Remove cards that are too small
+		drawDeck.pruneSmallCards()
+		
+		# Go to next screen
 		goToDeckScreen()
 		
 func goToDeckScreen() -> void:

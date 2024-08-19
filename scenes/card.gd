@@ -11,6 +11,9 @@ var inPlay: bool
 # Set to 0 if it's not currently selected, set to 1 if it has been selected
 var selected: bool
 
+var cantPlay
+var toolTipText = "Essence: <ES> \n\n Effect: <EF>"
+
 func _init() -> void:
 	print("Created a card")
 	inPlay = false
@@ -20,6 +23,7 @@ func _ready() -> void:
 	custom_minimum_size = $CardSprite.texture.get_size()
 	$Label.text = str(power)
 	selected = false
+	cantPlay = $CantPlay
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -77,7 +81,7 @@ func drawn() -> void:
 	print("Card drawn")
 	var scaleFactor = (float(power) + (float(level.score)*0.5)) / float(level.score)
 	if scaleFactor < 1:
-		scaleFactor = max(0.5, scaleFactor)
+		scaleFactor = max(0.3, scaleFactor)
 	else:
 		scaleFactor = min(1.5, scaleFactor)
 	$CardSprite.scale = Vector2(scaleFactor, scaleFactor)
@@ -102,21 +106,38 @@ func discard() -> void:
 
 
 func play_card() -> void:
-	# Do effects
-	if (essence != null):
-		essence.executeCardPlayed(level, level.currentMonster, self)
-	else:
-		print("No effect on card")
+	if (self.power < level.score*2):
+		# Do effects
+		if (essence != null):
+			essence.executeCardPlayed(level, level.currentMonster, self)
+		else:
+			print("No effect on card")
+			
+		# Deal base damage to monster
+		if (power > 0) and (level.currentMonster != null):
+			level.currentMonster.dealDamage(self, power)
 		
-	# Deal base damage to monster
-	if (power > 0) and (level.currentMonster != null):
-		level.currentMonster.dealDamage(self, power)
-	
-	# Discard
-	discard()
-	
-	# Prompt level to do its post user-go stuff
-	level.postUserGo()
+		# Discard
+		discard()
+		
+		# Prompt level to do its post user-go stuff
+		level.postUserGo()
+	else:
+		cantPlay.play()
 
 func killSelf() -> void:
 	queue_free()
+
+func _on_mouse_entered() -> void:
+	var essenceText = ""
+	var effectText = ""
+	if (essence != null):
+		essenceText = essence.name + " - " + essence.essenceDescription
+	if (effect != null):
+		effectText = essence.name + " - " + effect.effectDescription
+	$Tooltip/TooltipLabel.text = toolTipText.replace("<ES>", essenceText).replace("<EF>", effectText)
+	$Tooltip.visible = true
+
+
+func _on_mouse_exited() -> void:
+	$Tooltip.visible = false

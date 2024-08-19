@@ -4,7 +4,8 @@ class_name StrongEssence
 
 func _init() -> void:
 	name = "STRONG"
-	description = "No power split after mitosis"
+	essenceDescription = "Cards generated after mitosis won't decrease in power!"
+	effectDescription = "Nothing"
 	power = 0
 	shaderPath = "res://shaders/strong.gdshader"
 	partialShaderPath = "res://shaders/strong_partial.gdshader"

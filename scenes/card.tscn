@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://pyyo2skooos"]
+[gd_scene load_steps=7 format=3 uid="uid://pyyo2skooos"]
 
 [ext_resource type="Script" path="res://scenes/card.gd" id="1_v6vv0"]
 [ext_resource type="Texture2D" uid="uid://c54btn0l03soo" path="res://graphics/cards/card-new.png" id="2_7can2"]
 [ext_resource type="Texture2D" uid="uid://u2u6hcac7td8" path="res://graphics/selected.png" id="3_kh6bt"]
+[ext_resource type="AudioStream" uid="uid://dmmuqqdjh8cs5" path="res://audio/effects/cantPlay.wav" id="4_l7il3"]
 
 [sub_resource type="GDScript" id="GDScript_w4t4v"]
 script/source = "extends Sprite2D
@@ -17,6 +18,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mx51"]
+size = Vector2(129, 195)
 
 [node name="Card" type="Control"]
 layout_mode = 3
@@ -45,12 +49,50 @@ theme_override_font_sizes/font_size = 45
 text = "test"
 
 [node name="CardSprite" type="Sprite2D" parent="."]
-position = Vector2(82, 102)
+position = Vector2(73, 108)
 texture = ExtResource("2_7can2")
 script = SubResource("GDScript_w4t4v")
 
 [node name="SelectedSprite" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.752941)
-position = Vector2(82, 102)
+position = Vector2(80, 107)
 texture = ExtResource("3_kh6bt")
+
+[node name="CantPlay" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_l7il3")
+
+[node name="Tooltip" type="Node2D" parent="."]
+visible = false
+
+[node name="TooltipLabel" type="Label" parent="Tooltip"]
+z_index = 5
+offset_left = 161.0
+offset_top = 12.0
+offset_right = 461.0
+offset_bottom = 255.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Essence: 
+Darkness - Must manifest through mitosis. Will multiply damage by a random number between 0.5 and 3)
+
+Effect:
+None, yet!"
+autowrap_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="Tooltip"]
+z_index = 4
+custom_minimum_size = Vector2(300, 200)
+offset_left = 156.0
+offset_top = 8.0
+offset_right = 456.0
+offset_bottom = 208.0
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(74, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 11)
+shape = SubResource("RectangleShape2D_2mx51")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

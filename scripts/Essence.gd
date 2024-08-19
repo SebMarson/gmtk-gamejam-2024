@@ -3,7 +3,8 @@ extends RefCounted
 class_name Essence
 
 @export var name: String
-@export var description: String
+@export var essenceDescription: String
+@export var effectDescription: String
 @export var power: int
 @export var shaderPath: String
 @export var partialShaderPath: String

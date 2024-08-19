@@ -19,6 +19,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="DeckSScrollContainer" type="ScrollContainer" parent="DeckSVBoxContainer"]
+clip_contents = false
 layout_mode = 2
 
 [node name="DeckSGridContainer" type="GridContainer" parent="DeckSVBoxContainer/DeckSScrollContainer"]

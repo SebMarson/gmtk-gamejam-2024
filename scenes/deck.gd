@@ -46,8 +46,12 @@ func getCardAtRandom() -> Node:
 		$Label.text = str(cards.size())
 		return card
 	else:
-		level.shuffleDiscard()
-		return getCardAtRandom()
+		# Try and shuffle in discard deck if it has some cards in it
+		if (level.discardDeck.cards.size() > 0):
+			level.shuffleDiscard()
+			return getCardAtRandom()
+		else:
+			return null
 		
 func addCard(card) -> void:
 	cards.append(card)
@@ -71,3 +75,9 @@ func setLevel(levelRef) -> void:
 			
 func endTurn() -> void:
 	level.hand.draw()
+
+func pruneSmallCards() -> void:
+	for n in range(cards.size()-1, -1, -1):
+		var card = cards[n]
+		if (card.power < level.score/3):
+			cards.erase(card)
