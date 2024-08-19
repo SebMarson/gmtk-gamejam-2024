@@ -12,7 +12,9 @@ var level
 @export var SCORE = 3
 @export var ESSENCENAME = ""
 @export var IMG_PATH = ""
-@export var SIZE: int = 0
+@export var EXTRASCALE: float = 1
+@export var SCALEMIN: float = 0.3
+@export var SCALEMAX: float = 1.5
 
 # Common monster vars
 var hitSound
@@ -49,11 +51,11 @@ func load_sprite():
 		print("Error: Could not load texture at path:", IMG_PATH)
 		
 	# Scale image based on the players current score
-	var scaleFactor: float = float(HEALTH)/float(level.score)
+	var scaleFactor: float = (float(HEALTH)/float(level.score)) * EXTRASCALE
 	if scaleFactor < 1:
-		scaleFactor = max(0.3, scaleFactor)
+		scaleFactor = max(SCALEMIN, scaleFactor)
 	else:
-		scaleFactor = min(1.5, scaleFactor)
+		scaleFactor = min(SCALEMAX, scaleFactor)
 	$VBoxContainer/MonsterSprite.scale = Vector2(scaleFactor, scaleFactor)
 	
 func load_essence() -> void:

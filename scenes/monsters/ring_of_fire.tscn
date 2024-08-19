@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs7q57qclc5jf"]
+
+[ext_resource type="PackedScene" uid="uid://bmwqh6i3gley2" path="res://scenes/monster.tscn" id="1_6ljet"]
+
+[node name="Monster" instance=ExtResource("1_6ljet")]
+NAME = "RING_OF_FIRE"

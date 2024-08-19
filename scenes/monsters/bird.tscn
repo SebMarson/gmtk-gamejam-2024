@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnjhga4iwv445"]
+
+[ext_resource type="PackedScene" uid="uid://bmwqh6i3gley2" path="res://scenes/monster.tscn" id="1_36v6i"]
+
+[node name="Monster" instance=ExtResource("1_36v6i")]
+NAME = "BIRD"
