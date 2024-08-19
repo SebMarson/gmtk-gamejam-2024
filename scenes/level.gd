@@ -13,6 +13,9 @@ var discardDeck
 var deckScreen
 var mitosisScreen
 
+var europeFlag = false
+var earthFlag = false
+
 # Internal vars
 var currentMonster
 var score: float = 5
@@ -63,13 +66,28 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	var scaleFactor = float(20)/float(self.score)
+	var threshold: float = 20
+	if (score > 40 and score < 80):
+		threshold = 40
+	elif (score > 80 and score < 100):
+		threshold = 80
+	else:
+		threshold = 100
+	var scaleFactor = threshold/float(self.score)
 	$Background.scale = Vector2(scaleFactor, scaleFactor)
 
 func spawnMonster() -> void:
 	#currentMonster = monsterScene.instantiate()
 	#currentMonster.position = Vector2((1280/2), 100)
-	currentMonster = monsterFactory.generateMonster(score)
+	if (score < 70):
+		currentMonster = monsterFactory.generateMonster(score)
+	elif (!europeFlag):
+		currentMonster = monsterFactory.generateEurope()
+	elif (!earthFlag):
+		currentMonster = monsterFactory.generateEarth()
+	else:
+		currentMonster = monsterFactory.generateSun()
+		
 	currentMonster.position = Vector2((1280/2), 100)
 	currentMonster.setLevel(self)
 	add_child(currentMonster)
@@ -79,7 +97,14 @@ func shuffleDiscard() -> void:
 
 func addScore(newScore) -> void:
 	score += newScore
-	setSizeValue()
+	if (score > 0 and score < 20):
+		$Background.texture = load("res://graphics/backgrounds/tiny-background.png")
+	elif (score >= 20 and score < 50):
+		$Background.texture = load("res://graphics/backgrounds/outside-background.png")
+	elif (score >= 50 and score < 70):
+		$Background.texture = load("res://graphics/backgrounds/orbit-background.png")
+	else:
+		$Background.texture = load("res://graphics/backgrounds/space-background.png")
 	
 func decreaseScore(newScore) -> void:
 	score -= newScore

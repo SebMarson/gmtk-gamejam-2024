@@ -18,7 +18,7 @@ func _gui_input(event) -> void:
 	if (event is InputEventMouseButton) or (event is InputEventKey):
 		print("Interrupt mitosis screen")
 		$Timer.stop()
-		$Timer.timeout
+		_on_timer_timeout()
 	
 func setLevel(level) -> void:
 	self.level = level

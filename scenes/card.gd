@@ -106,10 +106,10 @@ func discard() -> void:
 
 
 func play_card() -> void:
-	if (self.power < level.score*2):
+	if (canPlayCheck()):
 		# Do effects
-		if (essence != null):
-			essence.executeCardPlayed(level, level.currentMonster, self)
+		if (effect != null):
+			effect.executeCardPlayed(level, level.currentMonster, self)
 		else:
 			print("No effect on card")
 			
@@ -129,15 +129,24 @@ func killSelf() -> void:
 	queue_free()
 
 func _on_mouse_entered() -> void:
-	var essenceText = ""
-	var effectText = ""
-	if (essence != null):
-		essenceText = essence.name + " - " + essence.essenceDescription
-	if (effect != null):
-		effectText = effect.name + " - " + effect.effectDescription
-	$Tooltip/TooltipLabel.text = toolTipText.replace("<ES>", essenceText).replace("<EF>", effectText)
-	$Tooltip.visible = true
+	if (canPlayCheck()):
+		var essenceText = ""
+		var effectText = ""
+		if (essence != null):
+			essenceText = essence.name + " - " + essence.essenceDescription
+		if (effect != null):
+			effectText = effect.name + " - " + effect.effectDescription
+		$Tooltip/TooltipLabel.text = toolTipText.replace("<ES>", essenceText).replace("<EF>", effectText)
+		$Tooltip.visible = true
+	else:
+		$Tooltip/TooltipLabel.text = "You are too small to play this card!!"
+		$Tooltip.visible = true
 
+func canPlayCheck() -> bool:
+	if (self.power < level.score*2):
+		return true
+	else:
+		return false
 
 func _on_mouse_exited() -> void:
 	$Tooltip.visible = false

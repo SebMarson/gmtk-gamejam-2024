@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmwqh6i3gley2"]
+[gd_scene load_steps=4 format=3 uid="uid://bmwqh6i3gley2"]
 
 [ext_resource type="Script" path="res://scenes/monster.gd" id="1_wfsig"]
 [ext_resource type="AudioStream" uid="uid://bobhrpqvghfi7" path="res://audio/effects/hitHurt.wav" id="3_apwvi"]
+
+[sub_resource type="SystemFont" id="SystemFont_1e5wo"]
 
 [node name="Monster" type="Control"]
 layout_mode = 3
@@ -16,6 +18,12 @@ offset_left = -119.0
 offset_top = 2.0
 offset_right = 115.0
 offset_bottom = 36.0
+
+[node name="Name" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.931626, 0, 0.0992324, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_1e5wo")
+theme_override_font_sizes/normal_font_size = 30
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2

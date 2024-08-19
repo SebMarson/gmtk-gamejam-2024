@@ -4,3 +4,7 @@
 
 [node name="Monster" instance=ExtResource("1_2gy2r")]
 NAME = "EARTH"
+HEALTH = 90
+ATTACK = 1
+ESSENCENAME = "STRONG"
+IMG_PATH = "res://graphics/monsters/earth.png"

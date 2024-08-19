@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://muiphjp2gdq4"]
+[gd_scene load_steps=8 format=3 uid="uid://muiphjp2gdq4"]
 
 [ext_resource type="Script" path="res://scenes/start_screen.gd" id="1_tqxqu"]
 [ext_resource type="Texture2D" uid="uid://bafq5phsgf2q6" path="res://graphics/buttons/start_button.png" id="2_4i75w"]
@@ -6,14 +6,10 @@
 [ext_resource type="Script" path="res://scenes/start_button.gd" id="4_5w0x3"]
 [ext_resource type="Texture2D" uid="uid://d3y25o77semp1" path="res://graphics/buttons/help_button.png" id="5_0gw6c"]
 [ext_resource type="Texture2D" uid="uid://cncuv76unndb1" path="res://graphics/buttons/help_button_hover.png" id="6_gfc3g"]
+[ext_resource type="Texture2D" uid="uid://hesfqtwilutq" path="res://graphics/backgrounds/menu-background.png" id="7_y7hem"]
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource("1_tqxqu")
-
-[node name="Background" type="ColorRect" parent="."]
-offset_right = 1287.0
-offset_bottom = 724.0
-color = Color(4.33177e-07, 0.346991, 0.00969392, 1)
 
 [node name="ButtonMarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 8
@@ -31,18 +27,34 @@ grow_vertical = 2
 [node name="ButtonVBoxContainer" type="VBoxContainer" parent="ButtonMarginContainer"]
 layout_mode = 2
 
-[node name="StartButton" type="TextureButton" parent="ButtonMarginContainer/ButtonVBoxContainer"]
+[node name="StartButton" type="TextureButton" parent="."]
 z_index = 1
-layout_mode = 2
+offset_left = 517.0
+offset_top = 332.0
+offset_right = 723.0
+offset_bottom = 410.0
 texture_normal = ExtResource("2_4i75w")
 texture_hover = ExtResource("3_lhroi")
 stretch_mode = 0
 script = ExtResource("4_5w0x3")
 
-[node name="HelpButton" type="TextureButton" parent="ButtonMarginContainer/ButtonVBoxContainer"]
-layout_mode = 2
+[node name="HelpButton" type="TextureButton" parent="."]
+offset_left = 537.0
+offset_top = 453.0
+offset_right = 743.0
+offset_bottom = 521.0
 texture_normal = ExtResource("5_0gw6c")
 texture_hover = ExtResource("6_gfc3g")
 
-[connection signal="pressed" from="ButtonMarginContainer/ButtonVBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="ButtonMarginContainer/ButtonVBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(643, 372)
+scale = Vector2(0.52, 0.52)
+texture = ExtResource("7_y7hem")
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]

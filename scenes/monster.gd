@@ -12,9 +12,9 @@ var level
 @export var SCORE = 3
 @export var ESSENCENAME = ""
 @export var IMG_PATH = ""
-@export var EXTRASCALE: float = 1
+@export var EXTRASCALE: float = 3
 @export var SCALEMIN: float = 0.3
-@export var SCALEMAX: float = 1.5
+@export var SCALEMAX: float = 3
 
 # Common monster vars
 var hitSound
@@ -34,6 +34,8 @@ func _ready() -> void:
 	$VBoxContainer/HealthBar.max_value = HEALTH
 	$VBoxContainer/HealthBar.value = HEALTH
 	$VBoxContainer/Label.text = str(HEALTH) + "HP"
+	$VBoxContainer/Name.custom_minimum_size = Vector2(100, 100)
+	$VBoxContainer/Name.text = str(NAME)
 	
 	# Setup sounds
 	load_sounds()
@@ -80,6 +82,14 @@ func defeated(card) -> void:
 	card.defeatedMonster(self)
 	level.addScore(SCORE)
 	
+	# Set flags if boss monster
+	if (self.NAME == "EUROPE"):
+		level.europeFlag = true
+	elif (self.NAME == "EARTH"):
+		level.earthFlag = true
+	elif (self.NAME == "SUN"):
+		print("FINAL CINEMATIC AND CREDITS")
+		
 	# Erase self and references
 	queue_free()
 	level.currentMonster = null

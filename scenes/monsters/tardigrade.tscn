@@ -9,4 +9,3 @@ SCORE = 5
 ESSENCENAME = "STRONG"
 IMG_PATH = "res://graphics/monsters/tardigrade-new.png"
 EXTRASCALE = 2.0
-SCALEMAX = 3.0

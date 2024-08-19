@@ -4,3 +4,8 @@
 
 [node name="Monster" instance=ExtResource("1_a5p71")]
 NAME = "SUN"
+HEALTH = 100
+ATTACK = 1
+ESSENCENAME = "LIGHT"
+IMG_PATH = "res://graphics/monsters/sun.png"
+SCALEMAX = 3.5

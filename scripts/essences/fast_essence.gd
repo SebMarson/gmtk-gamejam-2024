@@ -19,3 +19,14 @@ func executeCardPlayed(level, monster, card) -> void:
 # Performs some action after mitosis on a card
 func executeCardMitosis(level, originalCard, newCardArray) -> void:
 	pass
+
+
+# Performs some action during the draw phase
+func executeCardDraw(level, deck) -> Node:
+	var drawnCard = null
+	for card in deck.cards:
+		if (card.effect != null):
+			if (card.effect.name == "FAST"):
+				drawnCard = card
+				break
+	return drawnCard

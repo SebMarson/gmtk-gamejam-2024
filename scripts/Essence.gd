@@ -42,6 +42,6 @@ func executeCardMitosis(level, originalCard, newCardArray) -> void:
 	pass
 
 # Performs some action during the draw phase
-func executeCardDraw(level, deck) -> Array:
-	var drawnCards = []
-	return drawnCards
+func executeCardDraw(level, deck) -> Node:
+	var drawnCard = null
+	return drawnCard
