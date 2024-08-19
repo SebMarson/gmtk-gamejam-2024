@@ -4,5 +4,10 @@
 
 [node name="Monster" instance=ExtResource("1_htp5g")]
 NAME = "WORM"
+HEALTH = 30
+ATTACK = 4
+SCORE = 7
 ESSENCENAME = "FAST"
-IMG_PATH = "res://graphics/monsters/worm.png"
+IMG_PATH = "res://graphics/monsters/worm-new.png"
+EXTRASCALE = 2.0
+SCALEMAX = 3.0

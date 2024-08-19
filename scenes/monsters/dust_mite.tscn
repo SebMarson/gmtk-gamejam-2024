@@ -8,4 +8,6 @@ HEALTH = 5
 ATTACK = 2
 SCORE = 5
 ESSENCENAME = "DARKNESS"
-IMG_PATH = "res://graphics/monsters/dust_mite.png"
+IMG_PATH = "res://graphics/monsters/dust_mite-new.png"
+EXTRASCALE = 3.0
+SCALEMAX = 3.0

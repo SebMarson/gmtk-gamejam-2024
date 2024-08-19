@@ -4,5 +4,10 @@
 
 [node name="Monster" instance=ExtResource("1_6p8pe")]
 NAME = "ANT"
+HEALTH = 30
+ATTACK = 4
+SCORE = 10
 ESSENCENAME = "STRONG"
-IMG_PATH = "res://graphics/monsters/ant.png"
+IMG_PATH = "res://graphics/monsters/ant-new.png"
+EXTRASCALE = 2.0
+SCALEMAX = 3.0
