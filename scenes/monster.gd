@@ -34,7 +34,7 @@ func _ready() -> void:
 	$VBoxContainer/HealthBar.max_value = HEALTH
 	$VBoxContainer/HealthBar.value = HEALTH
 	$VBoxContainer/Label.text = str(HEALTH) + "HP"
-	$VBoxContainer/Name.custom_minimum_size = Vector2(100, 100)
+	#$VBoxContainer/Name.custom_minimum_size = Vector2(100, 100)
 	$VBoxContainer/Name.text = str(NAME)
 	
 	# Setup sounds
@@ -88,7 +88,7 @@ func defeated(card) -> void:
 	elif (self.NAME == "EARTH"):
 		level.earthFlag = true
 	elif (self.NAME == "SUN"):
-		print("FINAL CINEMATIC AND CREDITS")
+		level.sunFlag = true
 		
 	# Erase self and references
 	queue_free()

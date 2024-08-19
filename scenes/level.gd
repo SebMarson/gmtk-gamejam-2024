@@ -15,6 +15,7 @@ var mitosisScreen
 
 var europeFlag = false
 var earthFlag = false
+var sunFlag = false
 
 # Internal vars
 var currentMonster
@@ -28,41 +29,8 @@ func _init() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Initialize Draw Deck
-	drawDeck = deckScene.instantiate()
-	drawDeck.setup(15)
-	drawDeck.setLevel(self)
-	drawDeck.position = Vector2(1100, 500)
-	add_child(drawDeck)
-	
-	# Initialize Discard Deck
-	discardDeck = deckScene.instantiate()
-	discardDeck.setup(0)
-	discardDeck.setLevel(self)
-	discardDeck.position = Vector2(100, 500)
-	add_child(discardDeck)
-	
-	# Initialize Hand
-	hand = handScene.instantiate()
-	hand.setLevel(self)
-	hand.draw()
-	add_child(hand)
-	
-	# Initialize deck screen
-	deckScreen = deckScreenScene.instantiate()
-	deckScreen.setLevel(self)
-	
-	# Initialize mitosis screen
-	mitosisScreen = mitosisScene.instantiate()
-	mitosisScreen.setLevel(self)
-	mitosisScreen.position = Vector2(600, 100)
-	mitosisScreen.size = Vector2(900, 500)
-	
-	# Setup score board
-	setSizeValue()
-	
-	# Load monster
-	spawnMonster()
+	$EndingBackground.visible = false
+	$StartingAnimation.play("new_animation")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -112,11 +80,21 @@ func decreaseScore(newScore) -> void:
 	
 func setSizeValue() -> void:
 	$ScoreContainer/ScoreValue.text = str(score)
+	$SizeBar.value = score
 
 func postUserGo() -> void:
 	if currentMonster != null:
 		# Monster alive, continue fight
 		currentMonster.attack()
+	elif(sunFlag):
+		# Hide all
+		remove_child(hand)
+		remove_child(drawDeck)
+		remove_child(discardDeck)
+		remove_child(deckScreen)
+		remove_child(mitosisScreen)
+		$ScoreContainer.visible = false
+		$EndingCinematic.play("ending_cinematic")
 	else:
 		# Discard hand into the discard deckz
 		hand.discardHand()
@@ -158,3 +136,42 @@ func continueFights() -> void:
 		spawnMonster()
 		hand.draw()
 	
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	# Initialize Draw Deck
+	drawDeck = deckScene.instantiate()
+	drawDeck.setup(15)
+	drawDeck.setLevel(self)
+	drawDeck.position = Vector2(1100, 500)
+	add_child(drawDeck)
+	
+	# Initialize Discard Deck
+	discardDeck = deckScene.instantiate()
+	discardDeck.setup(0)
+	discardDeck.setLevel(self)
+	discardDeck.position = Vector2(100, 500)
+	add_child(discardDeck)
+	
+	# Initialize Hand
+	hand = handScene.instantiate()
+	hand.setLevel(self)
+	hand.draw()
+	add_child(hand)
+	
+	# Initialize deck screen
+	deckScreen = deckScreenScene.instantiate()
+	deckScreen.setLevel(self)
+	
+	# Initialize mitosis screen
+	mitosisScreen = mitosisScene.instantiate()
+	mitosisScreen.setLevel(self)
+	mitosisScreen.position = Vector2(600, 100)
+	mitosisScreen.size = Vector2(900, 500)
+	
+	# Setup score board
+	$ScoreContainer.visible = true
+	setSizeValue()
+	
+	# Load monster
+	spawnMonster()

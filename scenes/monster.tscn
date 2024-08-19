@@ -20,10 +20,13 @@ offset_right = 115.0
 offset_bottom = 36.0
 
 [node name="Name" type="RichTextLabel" parent="VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.931626, 0, 0.0992324, 1)
 theme_override_fonts/normal_font = SubResource("SystemFont_1e5wo")
 theme_override_font_sizes/normal_font_size = 30
+text = "Default Text"
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -36,7 +39,7 @@ step = 1.0
 show_percentage = false
 
 [node name="MonsterSprite" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(119, 198)
+position = Vector2(118, 246)
 
 [node name="HitHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_apwvi")

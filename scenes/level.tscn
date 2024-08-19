@@ -1,12 +1,355 @@
-[gd_scene load_steps=3 format=3 uid="uid://e4g2u45tuy5b"]
+[gd_scene load_steps=13 format=3 uid="uid://e4g2u45tuy5b"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_oatnq"]
 [ext_resource type="Texture2D" uid="uid://b7xmlck3lekc6" path="res://graphics/backgrounds/tiny-background-crystal.png" id="2_41531"]
+[ext_resource type="Texture2D" uid="uid://cr7absdmvlfv" path="res://graphics/health_green.png" id="2_l5vgf"]
+[ext_resource type="Texture2D" uid="uid://b71kepdp5rdmp" path="res://graphics/backgrounds/cutscene-background.png" id="3_5m6wv"]
+[ext_resource type="Texture2D" uid="uid://bl1ku6qlpwtne" path="res://graphics/backgrounds/EYE.png" id="4_7uu5d"]
+[ext_resource type="AudioStream" uid="uid://bl1uj1s20plh3" path="res://audio/effects/explosion.wav" id="5_pokxy"]
+
+[sub_resource type="Animation" id="Animation_55cs6"]
+resource_name = "new_animation"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DONTPANIC:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [100]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DONTPANIC:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.966667, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("YOUARESMALL:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3, 4, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FIGHTANDGROW:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6, 7, 8, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qjinl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DONTPANIC:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [100]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DONTPANIC:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("YOUARESMALL:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FIGHTANDGROW:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0wsla"]
+_data = {
+"RESET": SubResource("Animation_qjinl"),
+"new_animation": SubResource("Animation_55cs6")
+}
+
+[sub_resource type="Animation" id="Animation_bos2r"]
+resource_name = "ending_cinematic"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EndingBackground:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(925, 148), Vector2(697, 576)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, 757), Vector2(4, -1298)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EYE:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 20, 21.0333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EYE:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(21.0333, 21.2, 21.4, 21.6333, 21.8333, 22.0333, 22.2, 22.4333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(689, 246), Vector2(662, 257), Vector2(704, 241), Vector2(681, 217), Vector2(705, 245), Vector2(687, 220), Vector2(660, 245), Vector2(732, 228)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Explosion:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(20.6667, 21.0333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ScoreContainer:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EndingBackground:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Credits:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SizeBar:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_k2e6m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EndingBackground:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(697, 148)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9, 842)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EYE:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EYE:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(689, 246)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Explosion:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ScoreContainer:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EndingBackground:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Credits:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SizeBar:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bh6uq"]
+_data = {
+"RESET": SubResource("Animation_k2e6m"),
+"ending_cinematic": SubResource("Animation_bos2r")
+}
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_oatnq")
 
 [node name="ScoreContainer" type="HBoxContainer" parent="."]
+visible = false
 z_index = 1
 offset_left = 13.0
 offset_top = 4.0
@@ -23,7 +366,93 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "10"
 
+[node name="SizeBar" type="TextureProgressBar" parent="."]
+visible = false
+z_index = 1
+offset_left = 26.0
+offset_top = 662.0
+offset_right = 626.0
+offset_bottom = 702.0
+rotation = -1.5708
+max_value = 80.0
+nine_patch_stretch = true
+texture_progress = ExtResource("2_l5vgf")
+
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(696, 384)
 texture = ExtResource("2_41531")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(644, 366)
+
+[node name="StartingAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0wsla")
+}
+
+[node name="DONTPANIC" type="Label" parent="."]
+offset_left = 302.0
+offset_top = 298.0
+offset_right = 942.0
+offset_bottom = 435.0
+theme_override_font_sizes/font_size = 100
+text = "DONT PANIC."
+
+[node name="YOUARESMALL" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 244.0
+offset_top = 283.0
+offset_right = 1016.0
+offset_bottom = 420.0
+theme_override_font_sizes/font_size = 100
+text = "YOU ARE SMALL"
+
+[node name="FIGHTANDGROW" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 206.0
+offset_top = 289.0
+offset_right = 1074.0
+offset_bottom = 426.0
+theme_override_font_sizes/font_size = 100
+text = "FIGHT AND GROW"
+
+[node name="EndingCinematic" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bh6uq")
+}
+
+[node name="EndingBackground" type="Sprite2D" parent="."]
+position = Vector2(697, 148)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_5m6wv")
+
+[node name="Credits" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 842.0
+offset_right = 1255.0
+offset_bottom = 2111.0
+theme_override_font_sizes/font_size = 75
+text = "CREATED BY - SEBASTIAN AND ZOE
+EXECUTIVE PRODUCER - ZOE
+CREATIVE CONSULTANT - SEB
+
+CODING - SEB
+MUSIC - ZOE
+ART - SEB
+ANIMATION - SEB
+
+CATERING - ZOE AND SEB
+WRANGLING - SEB AND ZOE
+INTERPRETATION - SEB AND ZOE"
+
+[node name="EYE" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(689, 246)
+scale = Vector2(1.34043, 1.29114)
+texture = ExtResource("4_7uu5d")
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_pokxy")
+
+[connection signal="animation_finished" from="StartingAnimation" to="." method="_on_animation_player_animation_finished"]
