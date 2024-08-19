@@ -15,8 +15,10 @@ script = ExtResource("1_0qqtj")
 
 [node name="DeckSVBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 287.0
+offset_top = 135.0
+offset_right = 617.0
+offset_bottom = 207.0
 
 [node name="DeckSScrollContainer" type="ScrollContainer" parent="DeckSVBoxContainer"]
 clip_contents = false
@@ -29,15 +31,23 @@ columns = 5
 [node name="DeckSHBoxContainer" type="HBoxContainer" parent="DeckSVBoxContainer"]
 layout_mode = 2
 
-[node name="MitosisButton" type="TextureButton" parent="DeckSVBoxContainer/DeckSHBoxContainer"]
+[node name="MitosisButton" type="TextureButton" parent="."]
 layout_mode = 2
+offset_left = 66.0
+offset_top = 185.0
+offset_right = 229.0
+offset_bottom = 253.0
 texture_normal = ExtResource("2_kt3am")
 texture_pressed = ExtResource("3_w0jxm")
 
-[node name="ContinueButton" type="TextureButton" parent="DeckSVBoxContainer/DeckSHBoxContainer"]
+[node name="ContinueButton" type="TextureButton" parent="."]
 layout_mode = 2
+offset_left = 66.0
+offset_top = 442.0
+offset_right = 229.0
+offset_bottom = 510.0
 texture_normal = ExtResource("4_jvemk")
 texture_pressed = ExtResource("5_u71p8")
 
-[connection signal="pressed" from="DeckSVBoxContainer/DeckSHBoxContainer/MitosisButton" to="." method="_on_mitosis_button_pressed"]
-[connection signal="pressed" from="DeckSVBoxContainer/DeckSHBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MitosisButton" to="." method="_on_mitosis_button_pressed"]
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]

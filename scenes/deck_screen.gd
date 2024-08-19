@@ -6,6 +6,9 @@ var selectedCards = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#position = Vector2(200, 100)
+	size = Vector2(900, 500)
+	
 	# Set size of scroll container to fill this control node
 	$DeckSVBoxContainer.size = size	
 	$DeckSVBoxContainer/DeckSScrollContainer.custom_minimum_size = size	

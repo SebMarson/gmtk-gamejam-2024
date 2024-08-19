@@ -134,7 +134,7 @@ func _on_mouse_entered() -> void:
 	if (essence != null):
 		essenceText = essence.name + " - " + essence.essenceDescription
 	if (effect != null):
-		effectText = essence.name + " - " + effect.effectDescription
+		effectText = effect.name + " - " + effect.effectDescription
 	$Tooltip/TooltipLabel.text = toolTipText.replace("<ES>", essenceText).replace("<EF>", effectText)
 	$Tooltip.visible = true
 

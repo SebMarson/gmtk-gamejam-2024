@@ -1,15 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://e4g2u45tuy5b"]
+[gd_scene load_steps=3 format=3 uid="uid://e4g2u45tuy5b"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_oatnq"]
+[ext_resource type="Texture2D" uid="uid://b5e5b4ma7kkj0" path="res://graphics/backgrounds/tiny-background.png" id="2_kb8ne"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_oatnq")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-z_as_relative = false
-offset_right = 1278.0
-offset_bottom = 731.0
-color = Color(0.383851, 0.174767, 0.388293, 1)
 
 [node name="ScoreContainer" type="HBoxContainer" parent="."]
 z_index = 1
@@ -27,3 +22,8 @@ text = "Size:"
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "10"
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(696, 384)
+texture = ExtResource("2_kb8ne")

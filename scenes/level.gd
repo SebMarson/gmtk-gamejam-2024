@@ -48,15 +48,12 @@ func _ready() -> void:
 	# Initialize deck screen
 	deckScreen = deckScreenScene.instantiate()
 	deckScreen.setLevel(self)
-	deckScreen.position = Vector2(200, 100)
-	deckScreen.size = Vector2(900, 500)
 	
 	# Initialize mitosis screen
 	mitosisScreen = mitosisScene.instantiate()
 	mitosisScreen.setLevel(self)
 	mitosisScreen.position = Vector2(600, 100)
 	mitosisScreen.size = Vector2(900, 500)
-	
 	
 	# Setup score board
 	setSizeValue()
@@ -66,7 +63,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	var scaleFactor = float(20)/float(self.score)
+	$Background.scale = Vector2(scaleFactor, scaleFactor)
 
 func spawnMonster() -> void:
 	#currentMonster = monsterScene.instantiate()
