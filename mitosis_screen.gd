@@ -31,7 +31,7 @@ func loadCards(originalCard, newCards) -> void:
 	$HBoxContainer/OriginalCardHolder.add_child(originalCard)
 	
 	for newCard in newCards:
-		$HBoxContainer/NewCardHolder.add_child(newCard)
+		$NewCardHolder.add_child(newCard)
 		
 	$Timer.start(3)
 
@@ -42,7 +42,7 @@ func _on_timer_timeout() -> void:
 	
 	# remove new cards
 	for child in newCards:
-		$HBoxContainer/NewCardHolder.remove_child(child)
+		$NewCardHolder.remove_child(child)
 		
 	originalCard = null
 	newCards = null

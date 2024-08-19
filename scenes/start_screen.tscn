@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://muiphjp2gdq4"]
+[gd_scene load_steps=10 format=3 uid="uid://muiphjp2gdq4"]
 
 [ext_resource type="Script" path="res://scenes/start_screen.gd" id="1_tqxqu"]
-[ext_resource type="Texture2D" uid="uid://bafq5phsgf2q6" path="res://graphics/buttons/start_button.png" id="2_4i75w"]
-[ext_resource type="Texture2D" uid="uid://dw1vjuak0lg7p" path="res://graphics/buttons/start_button_hover.png" id="3_lhroi"]
+[ext_resource type="Texture2D" uid="uid://yyxos8typkx3" path="res://graphics/buttons/start-button-new.png" id="2_tkjlt"]
+[ext_resource type="Texture2D" uid="uid://dp36sfh3v5gch" path="res://graphics/buttons/start-button-new-hover.png" id="3_qsj88"]
 [ext_resource type="Script" path="res://scenes/start_button.gd" id="4_5w0x3"]
-[ext_resource type="Texture2D" uid="uid://d3y25o77semp1" path="res://graphics/buttons/help_button.png" id="5_0gw6c"]
-[ext_resource type="Texture2D" uid="uid://cncuv76unndb1" path="res://graphics/buttons/help_button_hover.png" id="6_gfc3g"]
+[ext_resource type="Texture2D" uid="uid://cyick0fnihn7x" path="res://graphics/buttons/help-button-new.png" id="5_dgms1"]
+[ext_resource type="Texture2D" uid="uid://b57mccpu5yinf" path="res://graphics/buttons/help-button-new-hover.png" id="6_2nna0"]
 [ext_resource type="Texture2D" uid="uid://hesfqtwilutq" path="res://graphics/backgrounds/menu-background.png" id="7_y7hem"]
+[ext_resource type="Texture2D" uid="uid://bnkbie1qtqwwv" path="res://graphics/backgrounds/title.png" id="8_vhna5"]
+[ext_resource type="AudioStream" uid="uid://bshotdy4nw4f6" path="res://audio/music/Adventure.wav" id="9_mk7a0"]
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource("1_tqxqu")
@@ -33,28 +35,37 @@ offset_left = 517.0
 offset_top = 332.0
 offset_right = 723.0
 offset_bottom = 410.0
-texture_normal = ExtResource("2_4i75w")
-texture_hover = ExtResource("3_lhroi")
+texture_normal = ExtResource("2_tkjlt")
+texture_hover = ExtResource("3_qsj88")
 stretch_mode = 0
 script = ExtResource("4_5w0x3")
 
 [node name="HelpButton" type="TextureButton" parent="."]
-offset_left = 537.0
-offset_top = 453.0
-offset_right = 743.0
-offset_bottom = 521.0
-texture_normal = ExtResource("5_0gw6c")
-texture_hover = ExtResource("6_gfc3g")
+offset_left = 521.0
+offset_top = 445.0
+offset_right = 727.0
+offset_bottom = 545.0
+texture_normal = ExtResource("5_dgms1")
+texture_hover = ExtResource("6_2nna0")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(643, 372)
 scale = Vector2(0.52, 0.52)
 texture = ExtResource("7_y7hem")
 
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(363, 152)
+texture = ExtResource("8_vhna5")
+
+[node name="Adventure" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_mk7a0")
+volume_db = -30.0
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="finished" from="Adventure" to="." method="_on_adventure_finished"]

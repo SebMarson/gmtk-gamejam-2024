@@ -12,6 +12,7 @@ var drawDeck
 var discardDeck
 var deckScreen
 var mitosisScreen
+var music
 
 var europeFlag = false
 var earthFlag = false
@@ -69,8 +70,14 @@ func addScore(newScore) -> void:
 		$Background.texture = load("res://graphics/backgrounds/tiny-background.png")
 	elif (score >= 20 and score < 50):
 		$Background.texture = load("res://graphics/backgrounds/outside-background.png")
+		music.stop()
+		music = $Adventure
+		music.play()
 	elif (score >= 50 and score < 70):
 		$Background.texture = load("res://graphics/backgrounds/orbit-background.png")
+		music.stop()
+		music = $Epic
+		music.play()
 	else:
 		$Background.texture = load("res://graphics/backgrounds/space-background.png")
 	
@@ -94,6 +101,7 @@ func postUserGo() -> void:
 		remove_child(deckScreen)
 		remove_child(mitosisScreen)
 		$ScoreContainer.visible = false
+		music.stop()
 		$EndingCinematic.play("ending_cinematic")
 	else:
 		# Discard hand into the discard deckz
@@ -166,12 +174,19 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	# Initialize mitosis screen
 	mitosisScreen = mitosisScene.instantiate()
 	mitosisScreen.setLevel(self)
-	mitosisScreen.position = Vector2(600, 100)
-	mitosisScreen.size = Vector2(900, 500)
+	#mitosisScreen.position = Vector2(600, 100)
+	#mitosisScreen.size = Vector2(900, 500)
 	
 	# Setup score board
 	$ScoreContainer.visible = true
 	setSizeValue()
 	
+	music = $Tiny
+	music.play()
+	
 	# Load monster
 	spawnMonster()
+
+
+func _on_tiny_finished() -> void:
+	music.play()

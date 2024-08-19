@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxt3s53gi7mrk"]
 
 [ext_resource type="Script" path="res://mitosis_screen.gd" id="1_8yie1"]
-[ext_resource type="Texture2D" uid="uid://bt036puwum4tn" path="res://graphics/mitosis_arrow.png" id="2_uect6"]
+[ext_resource type="Texture2D" uid="uid://bfltpfmt7wpoy" path="res://graphics/backgrounds/arrow.png" id="2_7fvcu"]
 
 [node name="MitosisScreen" type="Control"]
 layout_mode = 3
@@ -12,22 +12,30 @@ script = ExtResource("1_8yie1")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 250.0
+offset_top = 242.0
+offset_right = 290.0
+offset_bottom = 282.0
 
 [node name="OriginalCardHolder" type="HBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Arrow" type="Sprite2D" parent="HBoxContainer"]
-texture = ExtResource("2_uect6")
-
-[node name="NewCardHolder" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="NewCardHolder" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 830.0
+offset_top = 181.0
+offset_right = 830.0
+offset_bottom = 221.0
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(620, 350)
+scale = Vector2(2, 2)
+texture = ExtResource("2_7fvcu")
 
 [connection signal="child_exiting_tree" from="HBoxContainer/OriginalCardHolder" to="." method="_on_original_card_holder_child_exiting_tree"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
